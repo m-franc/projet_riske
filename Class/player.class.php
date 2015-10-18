@@ -22,7 +22,7 @@ Class Player
 	public function getTypeOfUnit() {
 		return $this->_typeOfeUnit;
 	}
-	
+
 
 	// end of get function
 
@@ -54,7 +54,18 @@ Class Player
 	// End of set function
 
 	public function conquest(Aera $area, Unit $unit, Unit $unitDefender, Player $defender) {
-
+		// Un clique est effectué sur le territoire composant les unités que l'on veut déplacer. 
+		// Il est envoyer au php pour savoir combien d'unités sont présentes sur celui-ci
+		// On choisit ensuite le nombre d'unités parmis ces unités présentes. 
+		// Si il prends toute les unités du territoire, le programme reprend à 0 à la séléction des unités, car il doit au moins laissé une unité sur un territoire.
+		// Les unités sont à leur tour sauvegarder dans l'ajax.
+		// Un autre click est effectué pour envoyer les unités séléctionnées dans un territoire adjacent au précédent. 
+		// Il y a donc une autre fonction ajax pour renvoyer les données du territoire cliqué, qui sera ensuite attribué aux unités cliqués.
+		// Les unités seront donc situé au territoire cliqué en deuxième.
+		// Seulement, si des ennemis sont présents sur le territoire séléctionné, le combat est lancé. 
+		// On compare donc dans une condition, le total des forces de chacune des unités de chaque joueur (force * nb d'unités * coeff si sur un territoire spécial)
+		// Si c'est don l'attaquant (celui qui executera conquest) qui en à le plus, il gagne le territoire et l'attaquant perd ses unités. 
+		// Si l'attaquant n'avait pas assez de force, c'est ses unités qui crèvent, et le défenseur conserve son territoire.
 	}
 
 	// end of set function 
