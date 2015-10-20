@@ -3,6 +3,7 @@
 Class Unit 
 {
 	public $strength;
+	public $area;
 	public $type;
 	public $price;
 
@@ -14,27 +15,31 @@ Class Unit
 	const ELF_PRICE = 20;
 	const ORC_PRICE = 25;
 
-	public function __construct($typeUnit) {
-		$this->type = $typeUnit;						// The attribut type, enter by the user in paramater.
-		if ($this->type == self::MAN_TYPE) {			// Define the strengh by the type
-			$this->strength = 40;
-		} else if ($this->type == self::ELF_TYPE) {
-			$this->strength = 55;
-		} else if ($this->type == self::ORC_TYPE) {
-			$this->strength = 70;
+	public function __construct($typeUnit, Area $area) {
+		$this->type = $typeUnit;	
+		if ($typeUnit == Unit::MAN_TYPE || $typeUnit == Unit::ELF_TYPE || $typeUnit == Unit::ORC_TYPE) {	 // Ajax pour un menu déroulant avec les trois valeurs.	
+			if ($this->type == self::MAN_TYPE) {	
+				$this->setStrength(40);
+				$this->setPrice(self::MAN_PRICE);
+			} else if ($this->type == self::ELF_TYPE) {
+				$this->setStrength(55);
+				$this->setPrice(self::ELF_PRICE);
+			} else if ($this->type == self::ORC_TYPE) {
+				$this->setStrength(70);
+				$this->setPrice(self::ORC_PRICE);
+			}
+		} else {
+			return false;  	// Si il va dans la console, et rentre un 4, on recharge la page en relancant la fonction lauchGame 
 		}
-
-		if ($this->type == self::MAN_TYPE) {			// Define the price by the type
-			$this->price = self::MAN_PRICE;
-		} else if ($this->type == self::ELF_TYPE) {
-			$this->price = self::ELF_PRICE;
-		} else if ($this->type == self::ORC_TYPE) {
-			$this->price = self::ORC_PRICE;
-		}
+		$this->setArea($area);
 	}
 
 	public function getStrength() {
 		return $this->strength;
+	}
+
+	public function getArea() {
+		return $this->area;
 	}
 
 	public function getType() {
@@ -47,15 +52,17 @@ Class Unit
 
 	// End of get function
 
-	/*public function setStrength($strength, Area $area) {
-		if $this on specific area (See w Yvan, how area is specific) {
-			if (is_int($strength)) {
-				$this->price = $strength * coeff;
-			} else {
-				return false;
-			}
+	public function setStrength($strength) {
+		if (is_int($strength)) {
+			$this->strength = $strength;
+		} else {
+			return false;
 		}
-	}*/
+	}
+
+	public function setArea(Area $area) {
+		$this->area = $area;
+	}
 
 	public function setType($typeUnit) {
 		if (in_array($typeUnit, [self::MAN_TYPE, self::ELF_TYPE, self::ORC_TYPE])) {
@@ -65,13 +72,12 @@ Class Unit
 		}
 	}
 
-	/*public function setPrice($cost, Area $area) {
-		if $this on specific area (See w Yvan, how area is specific) {
-			if (is_int($cost)) {
-				$this->price = $cost * coeff;
-			} else {
-				return false;
-			}
-		}		
-	}*/
+	private function setPrice($price) {       			
+		if (in_array($price, [self::MAN_PRICE, self::ELF_PRICE, self::ORC_PRICE])) {
+			$this->price = $price;
+		} else {
+			return false;
+		}
+	}
 }
+

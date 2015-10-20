@@ -3,9 +3,9 @@
 include_once('Class/unit.class.php');
 include_once('Class/player.class.php');
 
-$aragorn = new Unit(1);
-$legolas = new Unit(2);
-$lurtz = new Unit(3);
+$aragorn = new Unit(1, 10);
+$legolas = new Unit(2, 11);
+$lurtz = new Unit(3, 12);
 
 var_dump($aragorn);
 echo '<br/>';
