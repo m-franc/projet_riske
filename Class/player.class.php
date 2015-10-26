@@ -3,7 +3,7 @@ Class Player
 {
 	private $_money;
 	private $_barrack;
-	private $_typeOfeUnit;
+	private $_typeOfUnit;
 
 	public function __construct(Unit $unit) {
 		$this->_barrack = 1;
@@ -20,7 +20,7 @@ Class Player
 	}
 
 	public function getTypeOfUnit() {
-		return $this->_typeOfeUnit;
+		return $this->_typeOfUnit;
 	}
 
 
@@ -34,6 +34,7 @@ Class Player
 		}
 	}
 
+
 	public function setBarrack($barrack) {
 		if (is_int($barrack)) {
 			$this->_barrack = $barrack;
@@ -42,9 +43,10 @@ Class Player
 		}
 	}
 
+
 	public function setTypeOfUnit($typeOfUnit) {
 		if (is_int($typeOfUnit)) {
-			$this->_typeOfeUnit = $typeOfUnit;
+			$this->_typeOfUnit = $typeOfUnit;
 		} else {
 			return false;
 		}
@@ -59,7 +61,7 @@ Class Player
 		// On choisit ensuite le nombre d'unités parmis ces unités présentes. 
 		// Si il prends toute les unités du territoire, le programme reprend à 0 à la séléction des unités, car il doit au moins laissé une unité sur un territoire.
 		// Les unités sont à leur tour sauvegarder dans l'ajax.
-		// Un autre click est effectué pour envoyer les unités séléctionnées dans un territoire adjacent au précédent. 
+		// Un autre click est effectué pour envoyer les unités séléctionnées dans un territoire adjacent au précédent. Si c'est un orc, ce sera plus (voire fonction de l'orc)
 		// Il y a donc une autre fonction ajax pour renvoyer les données du territoire cliqué, qui sera ensuite attribué aux unités cliqués.
 		// Les unités seront donc situé au territoire cliqué en deuxième.
 		// Seulement, si des ennemis sont présents sur le territoire séléctionné, le combat est lancé. 
