@@ -1,9 +1,10 @@
 <?php
+
 Class Player 
 {
 	private $_money;
-	private $_barrack;
 	private $_typeOfUnit;
+	private $_areas = array();
 
 	public function __construct(Unit $unit) {
 		$this->_barrack = 1;
@@ -21,6 +22,10 @@ Class Player
 
 	public function getTypeOfUnit() {
 		return $this->_typeOfUnit;
+	}
+
+	public function getAreas() {
+		return $this->_numberOfArea;
 	}
 
 
@@ -53,7 +58,39 @@ Class Player
 	}
 
 
+	public function setAreas($areas) {
+		if (is_int($areas)) {
+			$this->_Areas[] = $areas;
+		} else {
+			return false;
+		}
+	}
+
+
 	// End of set function
+
+
+	public function listAreas(Area $area) {
+		foreach($this->_Areas as $area) {
+			return $area->getIdArea().'</br>';
+		}
+	}
+
+
+	public function listUnits(Area $area) {
+		foreach ($this->_Areas as $area) {			
+			return $area->listUnitsOfArea().'</br>';
+		}
+	} 
+
+
+	public function listBarracks(Area $area) {
+		foreach ($this->_Areas as $area) {			
+			return $area->listBarrack().'</br>';
+		}
+	} 
+
+
 
 	public function conquest(Aera $area, Unit $unit, Unit $unitDefender, Player $defender) {
 		// Un clique est effectué sur le territoire composant les unités que l'on veut déplacer. 
@@ -72,9 +109,6 @@ Class Player
 
 	// end of set function 
 
-	// public function listUnit(Area $area) {
-	// 	   Return number of unit present on each area of this player 
-	// }
 
 	// public function listBarrack(Area $area) {
 	// 	   Return number of barrack present on each area of this player
