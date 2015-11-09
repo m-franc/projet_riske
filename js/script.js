@@ -2,7 +2,7 @@
 	$(document).ready(function() {
 
 		function is_int(value){
-		  	if((parseFloat(value) == parseInt(value)) && !isNaN(value)){
+		  	if((parseFloat(value) == parseInt(value)) && !isNaN(value)) {
 		      return true;
 		 	 } else {
 	     		 return false;
@@ -17,23 +17,24 @@
 		}
 
 
-		var number = $("#area1");
-
-		number.value;
-
-		function selectNumberOfUnit(number) {
-			var xmlhttp = new XMLHttpRequest();
-			xmlhttp.onreadystatechange = function() {
-				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-					if (is_int(number) && number < 6) {
-            			document.ajax.dyn.value="Received:" + req.responseText;	
-					} 
-				}
-				xmlhttp.open("GET", "conqest.php", true);
-				xmlhttp.send(number);
-			}
-		}
-		selectNumberOfUnit(number.value);
-		showForm();
+		$(function() { 
+			$("#form").submit(function() {
+			var number = $("#number").val();
+				$.ajax({
+					type: "POST",
+					data: number,
+					dataType: "html",
+					url: "conquest.php",
+					success: function(data) {
+						alert('yo');
+						console.log(number)
+					},
+					error: function() {
+						alert('une erreur est survene')
+					}
+				});
+			});
+		});
+			showForm();
 	});
 })(jQuery);
