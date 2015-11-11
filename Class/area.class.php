@@ -16,9 +16,9 @@
 		/* NB UNITS si 
 		si un joueur est assigné à ce territoire -> construit units
 		*/
-		public function __construct($type){
-			$this->createAreas(4);
-			$this->setTypeOfArea($type);
+		public function __construct($type, $nbPlayer){
+			$this->createAreas($nbPlayer);
+			$this->setTypeOfArea($id, $type);
 		}
 
 		public function getTypeOfArea(){
@@ -34,18 +34,23 @@
 		}
 
 		public function createAreas($nbPlayer){
-			$areaTab = array();
-			$areaX = 0;
-			$areaY= 0;
-			$id = 0;
-			for($areaX = 0; $areaX < ($nbPlayer); $areaX++){
-				echo '<br/>';
-				for($areaY = 0; $areaY < ($nbPlayer); $areaY++){
-					echo ' {'.$areaX.', '.$areaY.'} ';
-					if ($areaY == 9) echo '<br/>';
-					//$areaTab[$areaX][$areaY] = new Area('Foret');
+			if (!is_int($nbPlayer)){
+				return
+				$id = 0;
+				$areaTab = array();
+				$areaX = 0;
+				$areaY= 0;
+				for($areaX = 0; $areaX < ($nbPlayer); $areaX++){
+					echo '<br/>';
+					for($areaY = 0; $areaY < ($nbPlayer); $areaY++){
+						echo ' {'.$areaX.', '.$areaY.'} ';
+						if ($areaY == 9) echo '<br/>';
+						//$areaTab[$areaX][$areaY] = new Area('Foret');
+					}
 				}
 			}
+			else
+				return false;
 		}
 
 		public function getNeighbourArea(Area $id){

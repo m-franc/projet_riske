@@ -15,9 +15,10 @@ session_start();
 	height: 200px;
 }
 
-#area1 {
-	background-color: red;
+.area img {
+	size: 120%;
 }
+
 
 #form {
 	display: none;
@@ -26,10 +27,6 @@ session_start();
 	font-style: arial;
 }
 
-#area2 {
-	background-color: blue;
-}	
-
 </style>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -37,21 +34,19 @@ session_start();
 <script src="js/script.js" type="text/javascript"></script>
 <body>
 	<form id="form" method="post" action="conquest.php" name="general">
-		Rentrez le nombre d'unités que vous voulez déplacez<input type="text" id="number">
-		<input type="submit" value="ok">
+		<label for="number">Rentrez le nombre d'unités que vous souhaitez déplacer : </label>
+		<input type="text" id="numberOfUnit" name="numberOfUnit">
 	</form>
 	<div class="area" id ="area1" value="6">
+		<img src="images/montagne.png">
 	</div>
 	<div class="area" id="area2" value="0">
+		<img src="images/foret.png">
 	</div>
 </body>
 
 <?php
 
-if ($_POST['number'] != null) {
-	$number = $_GET['number'];
-} else {
-	echo 'NUL';
-}
+var_dump($_POST['numberOfUnit']);
 
 ?>

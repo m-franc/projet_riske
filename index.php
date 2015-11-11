@@ -16,6 +16,7 @@ var_dump($lurtz);
 $joueur1 = new Player($legolas);
 $joueur2 = new Player($aragorn);
 $joueur3 = new Player($lurtz);
+
 echo '<br/>';
 echo '<br/>';
 echo '<br/>';
