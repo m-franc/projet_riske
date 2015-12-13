@@ -7,9 +7,13 @@ include_once('Class/map.class.php');
 
 session_start();
 
+$response = $_POST['data']; // On récupére le nombre d'unités d'un territoire ici, pour ensuite le déplacer dans l'autre territoire
+
 ?>
 
+
 <style>
+
 .area {
 	width: 200px;
 	height: 200px;
@@ -33,20 +37,17 @@ session_start();
 <script src="js/jquery-1.11.3.min.js" type="text/javascript"></script>
 <script src="js/script.js" type="text/javascript"></script>
 <body>
-	<form id="form" method="post" action="conquest.php" name="general">
-		<label for="number">Rentrez le nombre d'unités que vous souhaitez déplacer : </label>
-		<input type="text" id="numberOfUnit" name="numberOfUnit">
+	<form method="conquest.php" id="form">
+		<label for="Rentrez le nombre d'unités que vous voulez déplacer">
+		<input type="text" id="number" name="number">
+		<input type="submit" id="submit">
 	</form>
+	<!-- Tant qu'il à des territoires... -->
 	<div class="area" id ="area1" value="6">
 		<img src="images/montagne.png">
 	</div>
-	<div class="area" id="area2" value="0">
+	<div class="area" id="area2" value=<?php print $response; ?> onclick="putUnit()"> 
 		<img src="images/foret.png">
 	</div>
 </body>
 
-<?php
-
-var_dump($_POST['numberOfUnit']);
-
-?>

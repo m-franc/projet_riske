@@ -1,15 +1,20 @@
 (function($) {
 	$(document).ready(function() {
 
-		var form = $("#form");
+		// ALl OF FUNCTION FOR THE SCRIPT
+
+
+		// Fonction qui gère un tour d'un joueur dans sa globalité, avec les différentes fonction prévues
 
 		function turn() {
-			selectUnit();
+			if (selectUnit) {
+				putUnit;
+			}
 		}
 		turn();
 
 
-		// ALl OF FUNCTION FOR THE SCRIPT
+		// fonction pour vérifier si une valeur est bien un int
 
 		function is_int(value){
 		  	if((parseFloat(value) == parseInt(value)) && !isNaN(value)) {
@@ -19,25 +24,19 @@
 		  	 }
 		}
 
-		function showForm() {
-			$(".area").click(function() {
-				window.prompt(form[0].innerText);
-			});
-		}
+
+		// Fonction pour séléctionner une unité dans un territoire en ajax, et l'envoyer dans du php pour le gérer ensuite avec les classes correspondates
 
 		function selectUnit() {
-			showForm();
-			$(form).submit(function() {
-				var inputNumber = $("#numberOfUnit").val();
-				if (is_int(inputNumber)) {
+			$(".area").click(function() { 
+				numberInput = prompt("Rentrez le nombre d'unités que vous voulez déplacez");
+				if (is_int(numberInput) && numberInput != '') {
 					$.ajax({
+						url: "http://localhost/projet_riske/conquest.php",
 						type: "POST",
-						data: inputNumber,
-						dataType: "html",
-						url: "conquest.php",
+        				data: {number: numberInput},
 						success: function(data) {
-							alert(inputNumber);
-							console.log(inputNumber);
+							console.log(data);
 						},
 						error: function() {
 							alert('une erreur est survene')
@@ -48,5 +47,15 @@
 				}
 			});
 		}
+
+
+		// Fonction qui permet de déposer les unités séléctionnés dans un nouveau territoire
+
+		function putUnit() {
+			$(".area").click(function()) {
+				$(".area").attribute = number;
+			}
+		}
+		
 	});
 })(jQuery);
