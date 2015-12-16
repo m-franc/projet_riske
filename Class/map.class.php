@@ -1,4 +1,5 @@
 <?php
+
 	class Map{
 		protected $areas;
 		protected $type;
@@ -21,4 +22,5 @@
 			return $this->areas[$id];
 		}
 	}
+	
 ?>

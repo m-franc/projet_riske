@@ -48,7 +48,6 @@
 			});
 		}
 
-
 		// Fonction qui permet de déposer les unités séléctionnés dans un nouveau territoire
 
 		function putUnit() {

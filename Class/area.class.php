@@ -1,5 +1,5 @@
 <?php
-	class Area{
+	class Area {
 		protected $bonus;
 		protected $typeOfArea;
 		protected $idArea;
