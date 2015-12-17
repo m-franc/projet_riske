@@ -47,22 +47,37 @@ Class Unit
 		}
 	}*/
 
-	public function setType($type) {								// Set the type between type constant value.
-		if (in_array($type, [self::ELF_TYPE, self::MAN_TYPE, self::ORC_TYPE])) {
-			$type = $this->type;
+
+
+	// End of get function
+
+	public function setStrength($strength) {
+		if (is_int($strength)) {
+			$this->strength = $strength;
 		} else {
 			return false;
 		}
 	}
 
-	public function setPrice($typeUnit) {							// Set the unit price by the type of it.
-		$typeUnit = $this->type;
-		if ($typeUnit == self::MAN_TYPE) {
-			$price = $this->price = self::MAN_COST;
-		} else if ($typeUnit == self::ELF_TYPE) {
-			$price = $this->price = self::ELF_COST;
-		} else if ($typeUnit == self::ORC_TYPE) {
-			$price = $this->price = self::ORC_COST;
+	public function setArea(Area $area) {
+		$this->area = $area;
+	}
+
+	public function setType($typeUnit) {
+		if (in_array($typeUnit, [self::MAN_TYPE, self::ELF_TYPE, self::ORC_TYPE])) {
+			$this->type = $typeUnit;
+		} else {
+			return false;
 		}
 	}
+
+	private function setPrice($price) {       			
+		if (in_array($price, [self::MAN_PRICE, self::ELF_PRICE, self::ORC_PRICE])) {
+			$this->price = $price;
+		} else {
+			return false;
+		}
+	}
+
 }
+
